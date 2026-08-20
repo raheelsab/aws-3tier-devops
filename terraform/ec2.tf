@@ -1,30 +1,5 @@
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-  owners      = ["137112412989"]
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-*-x86_64"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
 resource "aws_instance" "app" {
-  ami           = data.aws_ami.amazon_linux.id
+  ami           = "ami-08d4f68a071dd2d26"
   instance_type = "t3.micro"
 
   subnet_id = aws_subnet.app.id
